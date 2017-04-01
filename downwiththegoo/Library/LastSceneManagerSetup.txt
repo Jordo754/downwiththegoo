@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/SlimeMeshTestScene.unity
+=======
+- path: Assets/JordanTest.unity
+>>>>>>> ed82c71473a311395cef70a5e15c40dc8865f5be
   isLoaded: 1
   isActive: 1
