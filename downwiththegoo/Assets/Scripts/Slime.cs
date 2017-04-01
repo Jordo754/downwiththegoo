@@ -12,23 +12,41 @@ public class Slime : MonoBehaviour {
     }
 
     // states to handle slime player state
-    private enum PlayerState {
+    public enum PlayerState {
         Alive,
         Dead,
         Disabled
     }
     private PlayerState currentPlayerState;
-    
-	// Use this for initialization
-	void Start () {
+
+    public PlayerState CurrentPlayerState {
+        get { return currentPlayerState; }
+        set { currentPlayerState = value; }
+    }
+
+    //respawn position (if we add checkpoints)
+    private Vector3 respawnPosition;
+
+    // Use this for initialization
+    void Start () {
         // starts alive and blue
         currentPlayerState = PlayerState.Alive;
         currentColor = Manager.ColorState.Blue;
+        respawnPosition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //movement
         Move();
+
+        //reset player to respawn position, alive, and blue if dead
+        if (currentPlayerState == PlayerState.Dead) {
+            transform.position = respawnPosition;
+            currentColor = Manager.ColorState.Blue;
+            GetComponent<Renderer>().material.color = Color.blue;
+            currentPlayerState = PlayerState.Alive;
+        }
 	}
 
     // Handle movement of the slime

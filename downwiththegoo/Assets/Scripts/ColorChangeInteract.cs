@@ -2,42 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorChangeInteract : Interactable {
-    //constructor
-    public ColorChangeInteract (Manager.ColorState a_color) {
-        base.color = a_color;
+public class ColorChangeInteract {
+    //color that this changes player to
+    private Manager.ColorState color;
+    public Manager.ColorState InteractColor {
+        get { return color; }
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (colliding) {
-            ChangeColor();
-        }
-	}
+    //constructor
+    public ColorChangeInteract (Manager.ColorState a_color) {
+        color = a_color;
+    }
 
-    void ChangeColor () {
-        Debug.Log("Changing Color");
-        player.CurrentColor = this.color;
+    public Color ChangeColor () {
 
         if (this.color == Manager.ColorState.Blue) {
-            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+            return Color.blue;
         }
 
         else if (this.color == Manager.ColorState.Red) {
-            player.GetComponent<Renderer>().material.color = Color.red;
+            return Color.red;
         }
 
         else if (this.color == Manager.ColorState.Green) {
-            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            return Color.green;
         }
 
         else {
-            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+            return Color.white;
         }
 
     }
