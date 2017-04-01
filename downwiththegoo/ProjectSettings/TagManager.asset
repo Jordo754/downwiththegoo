@@ -9,6 +9,7 @@ TagManager:
   - ColorChange
   - Trap
   - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX

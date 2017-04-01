@@ -6,11 +6,13 @@ public class Interactable : MonoBehaviour {
     //public vars
     public Slime player;
     public Manager.ColorState color;
+	public int stickForce;
 
     //type of interactable
     public enum InteractType {
         ColorChange,
-        Trap
+        Trap,
+		Wall
     }
     private InteractType type;
     public InteractType Type {
@@ -27,13 +29,24 @@ public class Interactable : MonoBehaviour {
         if (tag == "ColorChange") {
             type = InteractType.ColorChange;
             colorChanger = new ColorChangeInteract(color);
-        }
+			stickForce = -1;
+
+		}
 
         if (tag == "Trap") {
             type = InteractType.Trap;
             trap = new TrapInteract(color);
-        }
-    }
+			stickForce = -1;
+
+		}
+
+		if (tag == "Wall")
+		{
+			type = InteractType.Wall;
+			colorChanger = new ColorChangeInteract(color);
+			stickForce = 5000;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -59,22 +72,31 @@ public class Interactable : MonoBehaviour {
 				child.GetComponent<Renderer>().material.color = change;
 			}
 
-			if (change == Color.blue)
-			{
-				player.ResetGravity();
+			if (change == Color.red || change == Color.blue) {
+				player.SetGravity();
 			}
 		}
 	}
-    void OnTriggerEnter(Collider other) {
-        if (type == InteractType.ColorChange) {
-            player.GetComponent<Renderer>().material.color = colorChanger.ChangeColor();
-            player.CurrentColor = colorChanger.InteractColor;
-        }
 
-        if (type == InteractType.Trap) {
-            if (trap.KillPlayer(player.CurrentColor)) {
-                player.CurrentPlayerState = Slime.PlayerState.Dead;
-            }
-        }
+    void OnCollisionEnter2D(Collision2D other) {
+		Debug.Log("wall check");
+		if (type == InteractType.Wall)
+		{
+			if (this.transform.position.x > other.transform.position.x) {
+				Debug.Log("right");
+				GameObject.Find("Center").GetComponent<Rigidbody2D>().AddForce(Vector2.right * stickForce * Time.deltaTime);
+			}
+
+			if (this.transform.position.x < other.transform.position.x) {
+				Debug.Log("wrong");
+				GameObject.Find("Center").GetComponent<Rigidbody2D>().AddForce(Vector2.left * stickForce * Time.deltaTime);
+			}
+
+			player.currentColor = Manager.ColorState.Green;
+			player.GetComponent<SlimeMesh>().blueMat.color = Color.green;
+
+			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+			player.SetGravity();
+		}
     }
 }

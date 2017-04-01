@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour {
 		//Handle jumpss
 		if (Input.GetKey(KeyCode.Space)&& jump == 0)
 		{
-			Debug.Log("SPACE");
+			//Debug.Log("SPACE");
 			jump = 1;
 			player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce*Time.deltaTime );
 		}
@@ -37,6 +37,6 @@ public class InputManager : MonoBehaviour {
 	public void resetJump()
 	{
 		jump = 0;
-		Debug.Log("reset");
+		//Debug.Log("reset");
 	}
 }

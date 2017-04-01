@@ -27,6 +27,8 @@ public class Slime : MonoBehaviour {
     //respawn position (if we add checkpoints)
     private Vector3 respawnPosition;
 
+	public bool colliding;
+
     // Use this for initialization
     void Start () {
         // starts alive and blue
@@ -37,8 +39,12 @@ public class Slime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //movement
-        //Move();
+		//movement
+		//Move();
+
+		if (currentColor == Manager.ColorState.Green && !colliding) {
+			ResetGravity();
+		}
 
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
@@ -47,18 +53,6 @@ public class Slime : MonoBehaviour {
             GetComponent<Renderer>().material.color = Color.blue;
             currentPlayerState = PlayerState.Alive;
         }
-
-		//handle red state
-		if (currentColor == Manager.ColorState.Red) {
-
-			//swap these for Mesh / Primitive
-			GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
-			foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert")) {
-				child.GetComponent<Rigidbody2D>().gravityScale = 0;
-			}
-
-			//GetComponent<Rigidbody2D>().gravityScale = -1;
-		}
 	}
 	
     // Handle movement of the slime - OBSOLETE
@@ -89,4 +83,34 @@ public class Slime : MonoBehaviour {
 		//GetComponent<Rigidbody2D>().gravityScale = 1;
 	}
 
+	public void SetGravity () {
+		switch (currentColor) {
+			case Manager.ColorState.Blue:
+				ResetGravity();
+				break;
+			case Manager.ColorState.Red:
+				//swap these for Mesh / Primitive
+				GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
+				foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert"))
+				{
+					child.GetComponent<Rigidbody2D>().gravityScale = 0;
+				}
+
+				//GetComponent<Rigidbody2D>().gravityScale = -1;
+
+				break;
+			case Manager.ColorState.Green:
+				//swap these for Mesh / Primitive
+				GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -0.25f;
+				foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert"))
+				{
+					child.GetComponent<Rigidbody2D>().gravityScale = 0;
+				}
+
+				//GetComponent<Rigidbody2D>().gravityScale = -1;
+				break;
+			default:
+				break;
+		}
+	} 
 }
