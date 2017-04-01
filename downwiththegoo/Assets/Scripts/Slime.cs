@@ -37,12 +37,8 @@ public class Slime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-		Move();
-=======
         //movement
         Move();
->>>>>>> 5d263b9b2c4880dd6f5f914f00ae653721772d0b
 
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
@@ -62,12 +58,8 @@ public class Slime : MonoBehaviour {
 			GetComponent<Rigidbody2D>().gravityScale = -1;
 		}
 	}
-
-<<<<<<< HEAD
+	
     // Handle movement of the slime - OBSOLETE
-=======
-    // Handle movement of the slime
->>>>>>> 5d263b9b2c4880dd6f5f914f00ae653721772d0b
     void Move () {
         // check for Left and Right movement
         if (Input.GetKeyDown("a") || Input.GetKeyDown("left")) {

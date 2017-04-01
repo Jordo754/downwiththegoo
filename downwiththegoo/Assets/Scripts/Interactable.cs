@@ -40,12 +40,12 @@ public class Interactable : MonoBehaviour {
         
 	}
 
-<<<<<<< HEAD
-    void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (type == InteractType.ColorChange) {
+		if (type == InteractType.ColorChange)
+		{
 			Color change = colorChanger.ChangeColor();
-            player.CurrentColor = colorChanger.InteractColor;
+			player.CurrentColor = colorChanger.InteractColor;
 			//player.GetComponent<SlimeMesh>().blueMat.color = change;
 			player.GetComponent<Renderer>().material.color = change;
 
@@ -56,17 +56,17 @@ public class Interactable : MonoBehaviour {
 				child.GetComponent<Renderer>().material.color = change;
 			}*/
 
-			if (change == Color.blue) {
+			if (change == Color.blue)
+			{
 				player.ResetGravity();
 			}
 		}
-=======
+	}
     void OnTriggerEnter(Collider other) {
         if (type == InteractType.ColorChange) {
             player.GetComponent<Renderer>().material.color = colorChanger.ChangeColor();
             player.CurrentColor = colorChanger.InteractColor;
         }
->>>>>>> 5d263b9b2c4880dd6f5f914f00ae653721772d0b
 
         if (type == InteractType.Trap) {
             if (trap.KillPlayer(player.CurrentColor)) {
