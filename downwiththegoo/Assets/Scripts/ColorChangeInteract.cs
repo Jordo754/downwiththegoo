@@ -9,16 +9,35 @@ public class ColorChangeInteract : Interactable {
     }
 
 	// Use this for initialization
-	void Start (Manager.ColorState a_color) {
+	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (colliding) {
+            ChangeColor();
+        }
 	}
 
     void ChangeColor () {
+        player.CurrentColor = this.color;
+
+        if (this.color == Manager.ColorState.Blue) {
+            player.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 1);
+        }
+
+        else if (this.color == Manager.ColorState.Red) {
+            player.gameObject.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 1);
+        }
+
+        else if (this.color == Manager.ColorState.Green) {
+            player.gameObject.GetComponent<Renderer>().material.color = new Color(0, 255, 0, 1);
+        }
+
+        else {
+            player.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255, 1);
+        }
 
     }
 }

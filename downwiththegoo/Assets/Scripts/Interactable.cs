@@ -5,9 +5,10 @@ using UnityEngine;
 public class Interactable : MonoBehaviour {
     protected Manager.ColorState color;
     public Slime player;
+    protected bool colliding;
 	// Use this for initialization
 	void Start () {
-		
+        colliding = false;
 	}
 	
 	// Update is called once per frame
@@ -15,9 +16,7 @@ public class Interactable : MonoBehaviour {
 
 	}
 
-    bool CheckCollisions () {
-        if (player.gameObject.transform.position.x > this.gameObject.transform.position.x || )
-
-        return false;
+    void OnTriggerEnter(Collider other) {
+        colliding = true;
     }
 }
