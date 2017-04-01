@@ -31,8 +31,11 @@ public class SlimeMesh : MonoBehaviour {
     private MeshRenderer meshRenderer;
 
     public Material blueMat;
-    #endregion
+	#endregion
 
+
+	//Jump Attributes
+	int jumps = 0;
     void Start () {
         SetupBlobPhysics();
         BuildMesh();
@@ -164,7 +167,7 @@ public class SlimeMesh : MonoBehaviour {
             center.GetComponent<Rigidbody2D>().AddForce(Vector2.right * moveForce);
         }
         if(Input.GetKeyDown(KeyCode.Space)) {
-            center.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
+       //     center.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
         }
     }*/
 
@@ -179,4 +182,8 @@ public class SlimeMesh : MonoBehaviour {
 
         UpdateMesh();
     }
+	void OnCollisionEnter2D(Collision2D other)
+	{
+
+	}
 }
