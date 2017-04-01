@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 1000
-  jumpForce: 175000
+  jumpForce: 150000
 --- !u!4 &445898058
 Transform:
   m_ObjectHideFlags: 0
