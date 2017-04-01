@@ -28,6 +28,7 @@ public class SlimeMesh : MonoBehaviour {
 
     private Mesh blobMesh;
     private MeshFilter meshFilter;
+    private MeshRenderer meshRenderer;
 
     public Material blueMat;
     #endregion
@@ -39,32 +40,48 @@ public class SlimeMesh : MonoBehaviour {
     void BuildMesh() {
         blobMesh = new Mesh();
         meshFilter = GetComponent<MeshFilter>();
+        meshRenderer = GetComponent<MeshRenderer>();
 
-
-        //Fill the vertex array
-        List<Vector3> blobPhysVertPositions = new List<Vector3>();
-        for(int i = 0; i < edgeVertCout; i++) {
-            blobPhysVertPositions.Add(edgeVerts[i].transform.position);
-        }
-        blobMeshVertices = blobPhysVertPositions.ToArray();
+        UpdateMesh();
 
         //Fill the uv array
 
         //Fill the triangle array
+        
         List<int> tris = new List<int>();
         for(int j = 0; j < edgeVertCout; j++) {
             //tris.Add
+            tris.Add(0);
+            tris.Add(j);
+
+            if(j+1 >= edgeVertCout) {
+                tris.Add(1);
+            }else {
+                tris.Add(j + 1);
+            }
         }
 
+        blobMeshTris = tris.ToArray();
+
         //Assign all the arrays and stuff
-        blobMesh.vertices = blobMeshVertices;
+        
         blobMesh.uv = blobMeshUVs;
         blobMesh.triangles = blobMeshTris;
+        blobMesh.name = "Blob Mesh";
+        meshRenderer.material = blueMat;
+
+        meshFilter.mesh = blobMesh;
     }
     void UpdateMesh() {
-        for(int i = 0; i < blobMeshVertices.Length; i++) {
-            //blobMeshVertices[i] = 
+        //Fill the vertex array
+        List<Vector3> blobPhysVertPositions = new List<Vector3>();
+        for (int i = 0; i < edgeVertCout; i++){
+            blobPhysVertPositions.Add(transform.InverseTransformPoint(edgeVerts[i].transform.position));
         }
+
+        blobMeshVertices = blobPhysVertPositions.ToArray();
+
+        blobMesh.vertices = blobMeshVertices;
     }
 
 	void SetupBlobPhysics() {
@@ -140,7 +157,7 @@ public class SlimeMesh : MonoBehaviour {
         avgVertPos /= edgeVerts.Count;
     }
     
-    void TestMove() {
+    /*void TestMove() {
         if(Input.GetKey(KeyCode.A)) {
             center.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveForce);
         }else if(Input.GetKey(KeyCode.D)) {
@@ -149,11 +166,11 @@ public class SlimeMesh : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space)) {
             center.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
         }
-    }
+    }*/
 
     void Update(){
         CalcAvgBlobPhysPos();
-        TestMove();
+        //TestMove();
 
         for (int i = 0; i < edgeVerts.Count; i++){
             //The third index of the sprin joints list will be the joint connecting the edgeVert to the center
