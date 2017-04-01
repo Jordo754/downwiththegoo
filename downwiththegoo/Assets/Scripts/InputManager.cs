@@ -7,8 +7,8 @@ public class InputManager : MonoBehaviour {
 	//Attributes
 	GameObject player;
 	int jump = 0;
-	public float moveForce=30000;
-
+	public float moveForce;
+	public float jumpForce = 30000;
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +22,21 @@ public class InputManager : MonoBehaviour {
 		{
 			Debug.Log("SPACE");
 			jump = 1;
-			player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * moveForce*Time.deltaTime );
+			player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce*Time.deltaTime );
+		}
+		if (Input.GetKey(KeyCode.A))
+		{
+			player.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveForce * Time.deltaTime);
+		}
+		if (Input.GetKey(KeyCode.D))
+		{
+			player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * moveForce*Time.deltaTime);
 		}
 	}
 
-	void resetJump()
+	public void resetJump()
 	{
 		jump = 0;
+		Debug.Log("reset");
 	}
 }

@@ -17,4 +17,9 @@ public class SlimeChild : MonoBehaviour {
 	void Update () {
 		
 	}
+	void OnCollisionEnter2D(Collision2D other)
+	{
+
+		GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+	}
 }
