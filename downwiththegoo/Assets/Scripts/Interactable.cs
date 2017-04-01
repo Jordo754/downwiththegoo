@@ -55,27 +55,37 @@ public class Interactable : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (type == InteractType.ColorChange)
-		{
-			Color change = colorChanger.ChangeColor();
-			player.CurrentColor = colorChanger.InteractColor;
+        if (other.tag == "EdgeVert" || other.tag == "CenterVert") {
+            if (type == InteractType.ColorChange)
+            {
+                Color change = colorChanger.ChangeColor();
+                player.CurrentColor = colorChanger.InteractColor;
 
-			//switch these for Mesh / Primitive
-			//player.GetComponent<Renderer>().material.color = change;
-			player.GetComponent<SlimeMesh>().blueMat.color = change;
+                //switch these for Mesh / Primitive
+                //player.GetComponent<Renderer>().material.color = change;
+                player.GetComponent<SlimeMesh>().blueMat.color = change;
 
-			//uncomment for mesh
-			//get each child box and change their mat color
-			GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
-			foreach (GameObject child in children)
-			{
-				child.GetComponent<Renderer>().material.color = change;
-			}
+                //uncomment for mesh
+                //get each child box and change their mat color
+                GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
+                foreach (GameObject child in children)
+                {
+                    child.GetComponent<Renderer>().material.color = change;
+                }
 
+<<<<<<< HEAD
 			if (change == Color.red || change == Color.blue) {
 				player.SetGravity();
 			}
 		}
+=======
+                if (change == Color.blue)
+                {
+                    player.ResetGravity();
+                }
+            }
+        }
+>>>>>>> cf5fbbb40f9786708688f02de10c74ff5e498807
 	}
 
     void OnCollisionEnter2D(Collision2D other) {
