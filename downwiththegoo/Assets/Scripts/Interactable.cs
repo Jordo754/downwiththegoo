@@ -43,15 +43,20 @@ public class Interactable : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
 	{
 		if (type == InteractType.ColorChange) {
-            //player.GetComponent<Renderer>().material.color
 			Color change = colorChanger.ChangeColor();
             player.CurrentColor = colorChanger.InteractColor;
+			//player.GetComponent<SlimeMesh>().blueMat.color = change;
+			player.GetComponent<Renderer>().material.color = change;
 
 			//get each child box and change their mat color
-			GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
+			/*GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
 			foreach (GameObject child in children)
 			{
 				child.GetComponent<Renderer>().material.color = change;
+			}*/
+
+			if (change == Color.blue) {
+				player.ResetGravity();
 			}
 		}
 

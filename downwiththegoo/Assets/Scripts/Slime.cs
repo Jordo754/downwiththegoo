@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slime : MonoBehaviour {
     // initial attributes - Jordan
     // states to handle slime color
-    private Manager.ColorState currentColor;
+    public Manager.ColorState currentColor;
     public Manager.ColorState CurrentColor {
         get { return currentColor; }
         set { currentColor = value; }
@@ -37,6 +37,8 @@ public class Slime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Move();
+
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
             transform.position = respawnPosition;
@@ -44,10 +46,20 @@ public class Slime : MonoBehaviour {
             GetComponent<Renderer>().material.color = Color.blue;
             currentPlayerState = PlayerState.Alive;
         }
+
+		//handle red state
+		if (currentColor == Manager.ColorState.Red) {
+			/*GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
+			foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert")) {
+				child.GetComponent<Rigidbody2D>().gravityScale = 0;
+			}*/
+
+			GetComponent<Rigidbody2D>().gravityScale = -1;
+		}
 	}
 
     // Handle movement of the slime - OBSOLETE
-    /*void Move () {
+    void Move () {
         // check for Left and Right movement
         if (Input.GetKeyDown("a") || Input.GetKeyDown("left")) {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x - 0.5f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
@@ -56,11 +68,16 @@ public class Slime : MonoBehaviour {
         if (Input.GetKeyDown("d") || Input.GetKeyDown("right")) {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + 0.5f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
         }
+    }
+
+    // Handle jumping of the slime - OBSOLETE
+    /*void Jump () {
+        // STUB
     }*/
 
-    // Handle jumping of the slime
-    void Jump () {
-        // STUB
-    }
+	//reset gravity values
+	public void ResetGravity () {
+		GetComponent<Rigidbody2D>().gravityScale = 1;
+	}
 
 }
