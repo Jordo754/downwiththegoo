@@ -21,22 +21,23 @@ public class ColorChangeInteract : Interactable {
 	}
 
     void ChangeColor () {
+        Debug.Log("Changing Color");
         player.CurrentColor = this.color;
 
         if (this.color == Manager.ColorState.Blue) {
-            player.gameObject.GetComponent<Renderer>().material.color = new Color(0, 0, 255, 1);
+            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
         }
 
         else if (this.color == Manager.ColorState.Red) {
-            player.gameObject.GetComponent<Renderer>().material.color = new Color(255, 0, 0, 1);
+            player.GetComponent<Renderer>().material.color = Color.red;
         }
 
         else if (this.color == Manager.ColorState.Green) {
-            player.gameObject.GetComponent<Renderer>().material.color = new Color(0, 255, 0, 1);
+            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
         }
 
         else {
-            player.gameObject.GetComponent<Renderer>().material.color = new Color(255, 255, 255, 1);
+            player.gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
         }
 
     }

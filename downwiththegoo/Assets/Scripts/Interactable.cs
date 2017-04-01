@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour {
     protected Manager.ColorState color;
     public Slime player;
-    protected bool colliding;
+    public bool colliding;
 	// Use this for initialization
 	void Start () {
         colliding = false;
@@ -17,6 +17,7 @@ public class Interactable : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other) {
+        Debug.Log("colliding");
         colliding = true;
     }
 }
