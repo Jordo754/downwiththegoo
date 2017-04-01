@@ -5,12 +5,7 @@ using UnityEngine;
 public class Slime : MonoBehaviour {
     // initial attributes - Jordan
     // states to handle slime color
-    private enum ColorState {
-        Blue,
-        Red,
-        Green
-    };
-    private ColorState currentColorState;
+    private Manager.ColorState currentColor;
 
     // states to handle slime player state
     private enum PlayerState {
@@ -24,7 +19,7 @@ public class Slime : MonoBehaviour {
 	void Start () {
         // starts alive and blue
         currentPlayerState = PlayerState.Alive;
-        currentColorState = ColorState.Blue;
+        currentColor = Manager.ColorState.Blue;
 	}
 	
 	// Update is called once per frame
@@ -33,12 +28,12 @@ public class Slime : MonoBehaviour {
 	}
 
     // Handle movement of the slime
-    void Move() {
+    void Move () {
         // STUB
     }
 
     // Handle jumping of the slime
-    void Jump() {
+    void Jump () {
         // STUB
     }
 
