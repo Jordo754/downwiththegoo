@@ -7,14 +7,4 @@ public class RedInteract : ColorChangeInteract {
     public RedInteract (Manager.ColorState a_color) : base (a_color) {
 
     }
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
