@@ -38,6 +38,7 @@ public class SlimeMesh : MonoBehaviour {
     void Start () {
         SetupBlobPhysics();
         BuildMesh();
+		blueMat.color = Color.blue;
     }
     void BuildMesh() {
         blobMesh = new Mesh();

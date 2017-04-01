@@ -19,7 +19,9 @@ public class SlimeChild : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D other)
 	{
-
-		GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+		if (other.collider.tag=="Floor")
+		{
+			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+		}
 	}
 }

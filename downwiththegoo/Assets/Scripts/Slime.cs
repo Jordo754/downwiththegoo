@@ -38,7 +38,7 @@ public class Slime : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //movement
-        Move();
+        //Move();
 
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
