@@ -46,15 +46,18 @@ public class Interactable : MonoBehaviour {
 		{
 			Color change = colorChanger.ChangeColor();
 			player.CurrentColor = colorChanger.InteractColor;
-			//player.GetComponent<SlimeMesh>().blueMat.color = change;
-			player.GetComponent<Renderer>().material.color = change;
 
+			//switch these for Mesh / Primitive
+			//player.GetComponent<Renderer>().material.color = change;
+			player.GetComponent<SlimeMesh>().blueMat.color = change;
+
+			//uncomment for mesh
 			//get each child box and change their mat color
-			/*GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
+			GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
 			foreach (GameObject child in children)
 			{
 				child.GetComponent<Renderer>().material.color = change;
-			}*/
+			}
 
 			if (change == Color.blue)
 			{

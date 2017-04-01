@@ -50,12 +50,14 @@ public class Slime : MonoBehaviour {
 
 		//handle red state
 		if (currentColor == Manager.ColorState.Red) {
-			/*GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
+
+			//swap these for Mesh / Primitive
+			GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
 			foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert")) {
 				child.GetComponent<Rigidbody2D>().gravityScale = 0;
-			}*/
+			}
 
-			GetComponent<Rigidbody2D>().gravityScale = -1;
+			//GetComponent<Rigidbody2D>().gravityScale = -1;
 		}
 	}
 	
@@ -78,7 +80,13 @@ public class Slime : MonoBehaviour {
 
 	//reset gravity values
 	public void ResetGravity () {
-		GetComponent<Rigidbody2D>().gravityScale = 1;
+		//swap these for Mesh / Primitive
+		GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = 1;
+		foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert")) {
+			child.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
+		}
+
+		//GetComponent<Rigidbody2D>().gravityScale = 1;
 	}
 
 }
