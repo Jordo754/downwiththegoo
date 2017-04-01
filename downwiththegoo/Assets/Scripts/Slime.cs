@@ -37,9 +37,6 @@ public class Slime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //movement
-        Move();
-
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
             transform.position = respawnPosition;
@@ -49,8 +46,8 @@ public class Slime : MonoBehaviour {
         }
 	}
 
-    // Handle movement of the slime
-    void Move () {
+    // Handle movement of the slime - OBSOLETE
+    /*void Move () {
         // check for Left and Right movement
         if (Input.GetKeyDown("a") || Input.GetKeyDown("left")) {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x - 0.5f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
@@ -59,7 +56,7 @@ public class Slime : MonoBehaviour {
         if (Input.GetKeyDown("d") || Input.GetKeyDown("right")) {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + 0.5f, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
         }
-    }
+    }*/
 
     // Handle jumping of the slime
     void Jump () {
