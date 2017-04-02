@@ -20,17 +20,17 @@ public class InputManager : MonoBehaviour {
 		//Handle jumpss
 		if (Input.GetKey(KeyCode.Space)&& jump == 0)
 		{
-			//Debug.Log("SPACE");
+			Debug.Log("SPACE");
 			jump = 1;
-			player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce*Time.deltaTime );
+			player.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce*Time.deltaTime );
 		}
 		if (Input.GetKey(KeyCode.A))
 		{
-			player.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveForce * Time.deltaTime);
+			player.GetComponent<Rigidbody>().AddForce(Vector2.left * moveForce * Time.deltaTime);
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
-			player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * moveForce*Time.deltaTime);
+			player.GetComponent<Rigidbody>().AddForce(Vector2.right * moveForce*Time.deltaTime);
 		}
 	}
 
