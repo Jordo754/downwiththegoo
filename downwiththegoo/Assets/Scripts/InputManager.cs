@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour {
 		{
 			Debug.Log("SPACE");
 			jump = 1;
-			player.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce*Time.deltaTime );
+			player.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * Time.deltaTime );
 		}
 		if (Input.GetKey(KeyCode.A))
 		{
