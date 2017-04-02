@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 137493228410427320}
   - component: {fileID: 183610353557978576}
   - component: {fileID: 54392814987039484}
-  - component: {fileID: 114577087200576924}
   - component: {fileID: 135992448077333152}
   m_Layer: 0
   m_Name: Player
@@ -59,17 +58,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &114577087200576924
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1296142213278356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61ec1190148d94b48883aa1fdc86c8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135992448077333152
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -95,7 +83,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 27a84fe6e70ada54ca65d6148bfd9014, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +133,7 @@ Cloth:
   m_CollisionMassScale: 0
   m_UseContinuousCollision: 1
   m_UseVirtualParticles: 1
-  m_SolverFrequency: 1
+  m_SolverFrequency: 10
   m_SleepThreshold: 0.1
   m_Coefficients:
   - maxDistance: 3.4028235e+38

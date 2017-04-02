@@ -98,7 +98,7 @@ public class Interactable : MonoBehaviour {
 			player.currentColor = Manager.ColorState.Green;
 			player.GetComponent<SlimeMesh>().blueMat.color = Color.green;
 
-			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+			GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
 			player.SetGravity();
 		}
     }

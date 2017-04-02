@@ -21,7 +21,7 @@ public class SlimeChild : MonoBehaviour {
 	{
 		if (other.collider.tag=="Floor")
 		{
-			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+			GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
 		}
 	}
 }
