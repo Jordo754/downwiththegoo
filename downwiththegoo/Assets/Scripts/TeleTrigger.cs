@@ -29,6 +29,7 @@ public class TeleTrigger : MonoBehaviour {
                 {
                     Debug.Log("Inside if");
                     GameObject.Find("Player").transform.position = new Vector3(temp[i].transform.position.x,temp[i].transform.position.y,0);
+                    GameObject.Find("Player").GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
             }
         }
