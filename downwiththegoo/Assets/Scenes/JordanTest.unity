@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentColor: 0
+  previousColor: 0
   colliding: 0
 --- !u!54 &10739575
 Rigidbody:
@@ -190,6 +191,7 @@ GameObject:
   - component: {fileID: 85699676}
   - component: {fileID: 85699675}
   - component: {fileID: 85699674}
+  - component: {fileID: 85699679}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -265,6 +267,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &85699679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85699673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da6cdb9ff356784ca73c8bf18173cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &296392021
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,19 +380,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b,
     type: 2}
   m_PrefabInternal: {fileID: 722859000}
---- !u!114 &331090449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 331090448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc66b62513c9034581a79f09e6f8ebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: 0
-  colliding: 0
 --- !u!54 &331090450
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 331090448}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -416,11 +416,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 3.11
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -457,18 +457,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 9.772901
       objectReference: {fileID: 0}
     - target: {fileID: 114511889260370506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b,
         type: 2}
       propertyPath: color
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 23001557064093318, guid: c8fcc125b764a004ab9dd6bb6b79fd9b,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ba305a029d1b99f4f86ba116d0348d3c, type: 2}
+      objectReference: {fileID: 2100000, guid: f8dda551fc88edf48b1faad51374165f, type: 2}
+    - target: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_TagString
+      value: TempChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.2927833
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61713712895590506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
     - {fileID: 50977525452808800, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
@@ -479,19 +487,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b,
     type: 2}
   m_PrefabInternal: {fileID: 361775829}
---- !u!114 &389194157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 389194156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc66b62513c9034581a79f09e6f8ebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: 0
-  colliding: 0
 --- !u!54 &389194158
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -580,11 +575,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 14.38
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 4.84
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -635,12 +630,16 @@ Prefab:
       objectReference: {fileID: 2100000, guid: ba305a029d1b99f4f86ba116d0348d3c, type: 2}
     - target: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_TagString
-      value: Wall
+      value: TempChange
       objectReference: {fileID: 0}
     - target: {fileID: 114511889260370506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b,
         type: 2}
       propertyPath: stickForce
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4.2344627
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61713712895590506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
@@ -656,7 +655,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -18
+      value: -14.72
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -709,6 +708,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: acfa78f97ae10e54ba37d057681f69d9, type: 2}
+    - target: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_TagString
+      value: TempChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 7.55081
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61713712895590506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
     - {fileID: 50977525452808800, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
@@ -755,7 +762,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -790,6 +797,14 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1552757886}
+    - target: {fileID: 1196588306914712, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_TagString
+      value: TempChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 4295241798738104, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.883358
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61713712895590506, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
     - {fileID: 50977525452808800, guid: c8fcc125b764a004ab9dd6bb6b79fd9b, type: 2}
@@ -920,4 +935,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentColor: 0
+  previousColor: 0
   colliding: 0

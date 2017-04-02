@@ -10,6 +10,7 @@ TagManager:
   - Trap
   - Floor
   - Wall
+  - TempChange
   layers:
   - Default
   - TransparentFX
