@@ -42,6 +42,7 @@ public class Slime : MonoBehaviour {
         blueGravity = Physics.gravity;
         redGravity = blueGravity * -1f;
         greenGravity = new Vector3(blueGravity.y, 0, 0);
+        Debug.Log(greenGravity);
         yellowGravity = greenGravity * -1f;
 	}
 	
@@ -49,14 +50,6 @@ public class Slime : MonoBehaviour {
 	void Update () {
 		//movement
 		//Move();
-
-		if (currentColor == Manager.ColorState.Green && !colliding) {
-			ResetGravity();
-		}
-
-        if (currentColor == Manager.ColorState.Green && colliding) {
-            GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
-        }
 
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {

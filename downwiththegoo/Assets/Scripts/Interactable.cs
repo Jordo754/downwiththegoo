@@ -68,10 +68,9 @@ public class Interactable : MonoBehaviour {
                 player.GetComponent<SkinnedMeshRenderer>().materials[0].color = change;
 
                 //set gravity now if red or blue
-                if (change == Color.red || change == Color.blue)
-                {
+
                     player.SetGravity();
-                }
+                
             }
         }
 	}
