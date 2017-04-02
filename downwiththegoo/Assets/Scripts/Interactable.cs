@@ -86,6 +86,9 @@ public class Interactable : MonoBehaviour {
 			if (this.transform.position.x < other.transform.position.x) {
 
 			}
+
+			GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
+			player.SetGravity();
 		}
     }
 }

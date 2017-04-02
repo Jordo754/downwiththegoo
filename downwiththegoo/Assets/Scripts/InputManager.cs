@@ -26,17 +26,17 @@ public class InputManager : MonoBehaviour {
 		}
 		if (Input.GetKey(KeyCode.A))
 		{
-			player.GetComponent<Rigidbody>().AddForce(Vector2.left * moveForce * Time.deltaTime);
+			player.GetComponent<Rigidbody>().AddForce(Vector3.left * moveForce * Time.deltaTime);
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
-			player.GetComponent<Rigidbody>().AddForce(Vector2.right * moveForce*Time.deltaTime);
+			player.GetComponent<Rigidbody>().AddForce(Vector3.right * moveForce*Time.deltaTime);
 		}
 	}
 
-	public void resetJump()
+	public void ResetJump()
 	{
 		jump = 0;
-		//Debug.Log("reset");
+		Debug.Log("reset");
 	}
 }

@@ -17,11 +17,11 @@ public class SlimeChild : MonoBehaviour {
 	void Update () {
 		
 	}
-	void OnCollisionEnter2D(Collision2D other)
+	void OnCollisionEnter(Collision other)
 	{
 		if (other.collider.tag=="Floor")
 		{
-			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
+			GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
 		}
 	}
 }
