@@ -77,7 +77,7 @@ public class Interactable : MonoBehaviour {
 	}
 
     void OnCollisionEnter(Collision other) {
-		if (type == InteractType.Wall)
+        if (type == InteractType.Wall && player.currentColor == Manager.ColorState.Green)
 		{
 			if (this.transform.position.x > other.transform.position.x) {
 
@@ -87,8 +87,18 @@ public class Interactable : MonoBehaviour {
 
 			}
 
-			GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
-			player.SetGravity();
-		}
+            player.colliding = true;
+            GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
+            player.SetGravity();
+            player.GetComponent<Rigidbody>().drag = 0;
+            player.GetComponent<Rigidbody>().angularDrag = 0;
+        }
+    }
+
+    void OnCollisionExit(Collision other) {
+        if (type == InteractType.Wall) {
+            player.ResetGravity();
+            player.colliding = false;
+        }
     }
 }

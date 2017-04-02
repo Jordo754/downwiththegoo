@@ -28,6 +28,10 @@ public class ColorChangeInteract {
             return Color.green;
         }
 
+        else if (this.color == Manager.ColorState.Yellow) {
+            return Color.yellow;
+        }
+
         else {
             return Color.white;
         }

@@ -7,7 +7,8 @@ public class Manager : MonoBehaviour {
     public enum ColorState {
         Blue,
         Red,
-        Green
+        Green,
+        Yellow
     };
 
     // Use this for initialization

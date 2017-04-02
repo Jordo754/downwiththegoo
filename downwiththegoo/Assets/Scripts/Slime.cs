@@ -28,8 +28,10 @@ public class Slime : MonoBehaviour {
     private Vector3 respawnPosition;
 
 	public bool colliding;
-    private Vector3 initialGravity;
-    public Vector3 wallGravity;
+    private Vector3 blueGravity;
+    private Vector3 redGravity;
+    private Vector3 greenGravity;
+    private Vector3 yellowGravity;
 
     // Use this for initialization
     void Start () {
@@ -37,8 +39,10 @@ public class Slime : MonoBehaviour {
         currentPlayerState = PlayerState.Alive;
         currentColor = Manager.ColorState.Blue;
         respawnPosition = transform.position;
-        initialGravity = Physics.gravity;
-        wallGravity = initialGravity * .5f;
+        blueGravity = Physics.gravity;
+        redGravity = blueGravity * -1f;
+        greenGravity = new Vector3(blueGravity.y, 0, 0);
+        yellowGravity = greenGravity * -1f;
 	}
 	
 	// Update is called once per frame
@@ -49,6 +53,10 @@ public class Slime : MonoBehaviour {
 		if (currentColor == Manager.ColorState.Green && !colliding) {
 			ResetGravity();
 		}
+
+        if (currentColor == Manager.ColorState.Green && colliding) {
+            GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
+        }
 
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
@@ -78,7 +86,7 @@ public class Slime : MonoBehaviour {
 
 	//reset gravity values
 	public void ResetGravity () {
-        Physics.gravity = initialGravity;
+        Physics.gravity = blueGravity;
 	}
 
 	public void SetGravity () {
@@ -87,11 +95,14 @@ public class Slime : MonoBehaviour {
                 ResetGravity();
 				break;
 			case Manager.ColorState.Red:
-                Physics.gravity = initialGravity * -1f;
+                Physics.gravity = redGravity;
 				break;
 			case Manager.ColorState.Green:
-                Physics.gravity = wallGravity;
+                Physics.gravity = greenGravity;
 				break;
+            case Manager.ColorState.Yellow:
+                Physics.gravity = yellowGravity;
+                break;
 			default:
 				break;
 		}
