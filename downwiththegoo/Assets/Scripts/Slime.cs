@@ -28,6 +28,8 @@ public class Slime : MonoBehaviour {
     private Vector3 respawnPosition;
 
 	public bool colliding;
+    private Vector3 initialGravity;
+    public Vector3 wallGravity;
 
     // Use this for initialization
     void Start () {
@@ -35,6 +37,8 @@ public class Slime : MonoBehaviour {
         currentPlayerState = PlayerState.Alive;
         currentColor = Manager.ColorState.Blue;
         respawnPosition = transform.position;
+        initialGravity = Physics.gravity;
+        wallGravity = initialGravity * .5f;
 	}
 	
 	// Update is called once per frame
@@ -74,40 +78,19 @@ public class Slime : MonoBehaviour {
 
 	//reset gravity values
 	public void ResetGravity () {
-		//swap these for Mesh / Primitive
-		GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = 1;
-		foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert")) {
-			child.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
-		}
-
-		//GetComponent<Rigidbody2D>().gravityScale = 1;
+        Physics.gravity = initialGravity;
 	}
 
 	public void SetGravity () {
 		switch (currentColor) {
 			case Manager.ColorState.Blue:
-				ResetGravity();
+                ResetGravity();
 				break;
 			case Manager.ColorState.Red:
-				//swap these for Mesh / Primitive
-				GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -1;
-				foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert"))
-				{
-					child.GetComponent<Rigidbody2D>().gravityScale = 0;
-				}
-
-				//GetComponent<Rigidbody2D>().gravityScale = -1;
-
+                Physics.gravity = initialGravity * -1f;
 				break;
 			case Manager.ColorState.Green:
-				//swap these for Mesh / Primitive
-				GameObject.FindGameObjectWithTag("CenterVert").GetComponent<Rigidbody2D>().gravityScale = -0.25f;
-				foreach (GameObject child in GameObject.FindGameObjectsWithTag("EdgeVert"))
-				{
-					child.GetComponent<Rigidbody2D>().gravityScale = 0;
-				}
-
-				//GetComponent<Rigidbody2D>().gravityScale = -1;
+                Physics.gravity = wallGravity;
 				break;
 			default:
 				break;

@@ -53,26 +53,21 @@ public class Interactable : MonoBehaviour {
         
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter(Collider other)
 	{
         if (other.tag == "EdgeVert" || other.tag == "CenterVert") {
             if (type == InteractType.ColorChange)
             {
+                //recieve the color to change to
                 Color change = colorChanger.ChangeColor();
+
+                //set new color state
                 player.CurrentColor = colorChanger.InteractColor;
 
-                //switch these for Mesh / Primitive
-                //player.GetComponent<Renderer>().material.color = change;
-                player.GetComponent<SlimeMesh>().blueMat.color = change;
+                //change mat color
+                player.GetComponent<SkinnedMeshRenderer>().materials[0].color = change;
 
-                //uncomment for mesh
-                //get each child box and change their mat color
-                GameObject[] children = GameObject.FindGameObjectsWithTag("EdgeVert");
-                foreach (GameObject child in children)
-                {
-                    child.GetComponent<Renderer>().material.color = change;
-                }
-
+                //set gravity now if red or blue
                 if (change == Color.red || change == Color.blue)
                 {
                     player.SetGravity();
@@ -81,25 +76,16 @@ public class Interactable : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter2D(Collision2D other) {
-		Debug.Log("wall check");
+    void OnCollisionEnter(Collision other) {
 		if (type == InteractType.Wall)
 		{
 			if (this.transform.position.x > other.transform.position.x) {
-				Debug.Log("right");
-				GameObject.Find("Center").GetComponent<Rigidbody2D>().AddForce(Vector2.right * stickForce * Time.deltaTime);
+
 			}
 
 			if (this.transform.position.x < other.transform.position.x) {
-				Debug.Log("wrong");
-				GameObject.Find("Center").GetComponent<Rigidbody2D>().AddForce(Vector2.left * stickForce * Time.deltaTime);
+
 			}
-
-			player.currentColor = Manager.ColorState.Green;
-			player.GetComponent<SlimeMesh>().blueMat.color = Color.green;
-
-			GameObject.Find("InputManager").GetComponent<InputManager>().resetJump();
-			player.SetGravity();
 		}
     }
 }
