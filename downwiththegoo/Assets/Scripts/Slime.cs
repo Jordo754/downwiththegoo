@@ -42,6 +42,7 @@ public class Slime : MonoBehaviour {
         blueGravity = Physics.gravity;
         redGravity = blueGravity * -1f;
         greenGravity = new Vector3(blueGravity.y, 0, 0);
+        Debug.Log(greenGravity);
         yellowGravity = greenGravity * -1f;
 	}
 	

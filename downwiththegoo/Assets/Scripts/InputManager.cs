@@ -17,6 +17,10 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Update through call method from event trigger
+        Manager.ColorState color = GameObject.Find("Player").GetComponent<Slime>().currentColor;
+
 		//Handle jumpss
 		if (Input.GetKey(KeyCode.Space)&& jump == 0)
 		{
@@ -24,17 +28,32 @@ public class InputManager : MonoBehaviour {
 			jump = 1;
 			player.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce * Time.deltaTime );
 		}
-		if (Input.GetKey(KeyCode.A))
-		{
-			player.GetComponent<Rigidbody>().AddForce(Vector3.left * moveForce * Time.deltaTime);
-		}
-		if (Input.GetKey(KeyCode.D))
-		{
-			player.GetComponent<Rigidbody>().AddForce(Vector3.right * moveForce*Time.deltaTime);
-		}
-	}
+        if (color == Manager.ColorState.Blue || color == Manager.ColorState.Red)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                player.GetComponent<Rigidbody>().AddForce(Vector3.left * moveForce * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                player.GetComponent<Rigidbody>().AddForce(Vector3.right * moveForce * Time.deltaTime);
+            }
+        }
+        if (color == Manager.ColorState.Yellow || color == Manager.ColorState.Green)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                player.GetComponent<Rigidbody>().AddForce(Vector3.up * moveForce * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                player.GetComponent<Rigidbody>().AddForce(Vector3.down * moveForce * Time.deltaTime);
+            }
+        }
 
-	public void ResetJump()
+    }
+
+    public void ResetJump()
 	{
 		jump = 0;
 		Debug.Log("reset");
