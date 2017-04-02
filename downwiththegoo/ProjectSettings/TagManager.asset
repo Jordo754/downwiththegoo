@@ -11,6 +11,8 @@ TagManager:
   - Floor
   - Wall
   - TempChange
+  - InTele
+  - OutTele
   layers:
   - Default
   - TransparentFX
