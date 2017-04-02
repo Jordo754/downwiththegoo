@@ -6,6 +6,7 @@ public class Slime : MonoBehaviour {
     // initial attributes - Jordan
     // states to handle slime color
     public Manager.ColorState currentColor;
+	public Manager.ColorState previousColor;
     public Manager.ColorState CurrentColor {
         get { return currentColor; }
         set { currentColor = value; }

@@ -12,7 +12,8 @@ public class Interactable : MonoBehaviour {
     public enum InteractType {
         ColorChange,
         Trap,
-		Wall
+		Wall,
+		TempChange
     }
     private InteractType type;
     public InteractType Type {
@@ -46,6 +47,15 @@ public class Interactable : MonoBehaviour {
 			colorChanger = new ColorChangeInteract(color);
 			stickForce = 5000;
 		}
+
+		if (tag == "TempChange")
+		{
+			type = InteractType.TempChange;
+			colorChanger = new ColorChangeInteract(color);
+			stickForce = -1;
+
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -72,10 +82,62 @@ public class Interactable : MonoBehaviour {
                     player.SetGravity();
                 
             }
-        }
+
+			if (type == InteractType.TempChange)
+			{
+				Color change = colorChanger.ChangeColor();
+
+				if (change == Color.red) change = new Color(255, 0, 0);
+				else if (change == Color.blue) change = new Color(0, 0, 255);
+				else if (change == Color.green) change = new Color(0, 255, 0);
+				else if (change == Color.yellow) change = new Color(255, 255, 0);
+
+				//set new color state
+				player.CurrentColor = colorChanger.InteractColor;
+
+				//change mat color
+				player.GetComponent<SkinnedMeshRenderer>().materials[0].color = change;
+
+				//set gravity now if red or blue
+
+				player.SetGravity();
+			}
+		}
 	}
 
-    void OnCollisionEnter(Collision other) {
+	void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "EdgeVert" || other.tag == "CenterVert")
+		{
+
+			if (type == InteractType.TempChange)
+			{
+				player.currentColor = player.previousColor;
+
+				switch (player.previousColor)
+				{
+					case Manager.ColorState.Red:
+						player.GetComponent<SkinnedMeshRenderer>().materials[0].color = Color.red;
+						break;
+					case Manager.ColorState.Blue:
+						player.GetComponent<SkinnedMeshRenderer>().materials[0].color = Color.blue;
+						break;
+					case Manager.ColorState.Green:
+						player.GetComponent<SkinnedMeshRenderer>().materials[0].color = Color.green;
+						break;
+					case Manager.ColorState.Yellow:
+						player.GetComponent<SkinnedMeshRenderer>().materials[0].color = Color.yellow;
+						break;
+					default:
+						break;
+				}
+
+				player.SetGravity();
+			}
+		}
+	}
+
+	void OnCollisionEnter(Collision other) {
         if (type == InteractType.Wall && player.currentColor == Manager.ColorState.Green)
 		{
 			if (this.transform.position.x > other.transform.position.x) {
