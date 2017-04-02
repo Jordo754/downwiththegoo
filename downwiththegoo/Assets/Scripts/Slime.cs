@@ -50,14 +50,6 @@ public class Slime : MonoBehaviour {
 		//movement
 		//Move();
 
-		if (currentColor == Manager.ColorState.Green && !colliding) {
-			ResetGravity();
-		}
-
-        if (currentColor == Manager.ColorState.Green && colliding) {
-            GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
-        }
-
         //reset player to respawn position, alive, and blue if dead
         if (currentPlayerState == PlayerState.Dead) {
             transform.position = respawnPosition;
