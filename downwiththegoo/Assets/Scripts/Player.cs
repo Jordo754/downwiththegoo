@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         if (other.collider.tag == "Floor")
+            Debug.Log("Floor hit");
             GameObject.Find("InputManager").GetComponent<InputManager>().ResetJump();
     }
 }
