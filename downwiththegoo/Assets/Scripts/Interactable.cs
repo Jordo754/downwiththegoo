@@ -73,19 +73,12 @@ public class Interactable : MonoBehaviour {
                     child.GetComponent<Renderer>().material.color = change;
                 }
 
-<<<<<<< HEAD
-			if (change == Color.red || change == Color.blue) {
-				player.SetGravity();
-			}
-		}
-=======
-                if (change == Color.blue)
+                if (change == Color.red || change == Color.blue)
                 {
-                    player.ResetGravity();
+                    player.SetGravity();
                 }
             }
         }
->>>>>>> cf5fbbb40f9786708688f02de10c74ff5e498807
 	}
 
     void OnCollisionEnter2D(Collision2D other) {
